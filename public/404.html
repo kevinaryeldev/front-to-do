@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Redireciona rotas do SPA para o index.html no GitHub Pages
+      const path = window.location.pathname;
+      const base = '/' + window.location.pathname.split('/')[1];
+      sessionStorage.setItem('redirect', path);
+      window.location.replace(base + '/');
+    </script>
+  </head>
+  <body></body>
+</html>
