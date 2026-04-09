@@ -172,8 +172,8 @@ export default function DashboardPage() {
               Nova tarefa
             </Button>
             <Menu>
-              <MenuButton>
-                <HStack spacing={2} cursor="pointer" data-test-id="menu-user">
+              <MenuButton data-test-id="menu-user">
+                <HStack spacing={2} cursor="pointer">
                   <Avatar size="sm" name={username} bg="brand.400" color="white" />
                   <Text fontSize="sm" fontWeight="medium" color="gray.700" display={{ base: "none", md: "block" }}>
                     {username}
