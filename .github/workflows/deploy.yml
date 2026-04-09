@@ -41,7 +41,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
 
-  test:
+  unitTest:
     name: Unit Tests
     needs: install
     runs-on: ubuntu-latest
@@ -104,3 +104,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  e2eTest:
+    name: Trigger E2E tests
+    uses: actions/github-script@v7
+    with:
+      github-token: ${{ secrets.E2E_TRIGGER_TOKEN }}
+      script: |
+        await github.rest.actions.createWorkflowDispatch({
+          owner: 'kevinaryeldev',
+          repo: 'front-to-do-test',
+          workflow_id: 'tests.yml',
+          ref: 'main',
+          inputs: {
+            base_url: 'https://kevinaryeldev.github.io/front-to-do'
+          }
+        });
